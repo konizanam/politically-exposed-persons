@@ -1,0 +1,5 @@
+"row","pip_reference","reason"
+2,"Emilia Nghikembua (No ID)","duplicate key value violates unique constraint ""pips_pkey"""
+3,"Ronel le Grange (No ID)","duplicate key value violates unique constraint ""pips_pkey"""
+4,"Elton Witbooi (No ID)","duplicate key value violates unique constraint ""pip_institutions_pkey"""
+5,"Maria Moses (No ID)","duplicate key value violates unique constraint ""pip_institutions_pkey"""

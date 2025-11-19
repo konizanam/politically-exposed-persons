@@ -1,0 +1,13 @@
+Row,PIP Reference,Error Reason
+82, NEKONGO (78090200125),Missing required fields: first_name, last_name, or reason
+215, MBABI (6912120001554),Missing required fields: first_name, last_name, or reason
+366, AWALA (80011610107),Missing required fields: first_name, last_name, or reason
+408, SIWOMBE (85103110083),Missing required fields: first_name, last_name, or reason
+427, SHEETEKELA (83070510639),Missing required fields: first_name, last_name, or reason
+504, AMUTENYA (84040810244),Missing required fields: first_name, last_name, or reason
+510, ITENGULA (71120500575),Missing required fields: first_name, last_name, or reason
+611, SWART (7112110800166),Missing required fields: first_name, last_name, or reason
+758, ENGHONO (74042400329),Missing required fields: first_name, last_name, or reason
+768, KAVERA (6701150700516),Missing required fields: first_name, last_name, or reason
+801, CLAASEN (7305070000084),Missing required fields: first_name, last_name, or reason
+820, LINANGA (7206250049100),Missing required fields: first_name, last_name, or reason

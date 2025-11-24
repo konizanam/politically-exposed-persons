@@ -1,229 +1,218 @@
 PIP Intel Namibia
-A comprehensive web application for managing Public Investment Projects (PIPs) in Namibia, providing tools for data management, user administration, and audit trail tracking.
+
+A comprehensive web application for managing Public Investment Projects (PIPs) in Namibia — providing secure data management, user administration, organisational control, and complete audit tracking.
 
 🚀 Features
-Core Functionality
-PIP Management: Comprehensive management of Public Investment Projects
+✅ Core Functionality
 
-Data Capturing: Specialized interface for data entry and management
+PIP Management – Full lifecycle management of Public Investment Projects
 
-Audit Trail: Complete tracking of system activities and changes
+Data Capturing – Specialized interface for structured data entry
 
-User Management: Role-based user administration
+Audit Trail – Complete tracking of activities and system changes
 
-Organisation Management: Manage organizational structures and relationships
+User Management – Role-based access and account control
 
-Security & Authentication
-JWT-based Authentication: Secure token-based authentication system
+Organisation Management – Manage institutional structures and relationships
 
-Multi-Factor Authentication (MFA): Optional 2FA for enhanced security
+🔐 Security & Authentication
 
-Role-Based Access Control: Granular permissions system
+JWT-based authentication
 
-Session Management: Secure session handling with expiration controls
+Multi-Factor Authentication (MFA / 2FA)
 
-Administrative Features
-User Management: Create, edit, and manage user accounts
+Role-Based Access Control (RBAC)
 
-Role Management: Define and assign user roles and permissions
+Secure session management with expiration controls
 
-Package Management: Manage system packages and features
+🛠 Administrative Features
 
-Search History: Track and review PIP search activities
+User account creation and management
 
-🛠 Technology Stack
+Role and permission assignment
+
+System package and feature management
+
+PIP search history tracking
+
+🧰 Technology Stack
 Frontend
-React 18 - Modern React with hooks
 
-React Router DOM - Client-side routing
+React 18 (hooks based)
 
-Axios - HTTP client for API calls
+React Router DOM
 
-Context API - State management
+Axios
 
-CSS3 - Custom styling with responsive design
+Context API
+
+CSS3 (responsive design)
 
 Backend
-Node.js - Runtime environment
 
-Express.js - Web application framework
+Node.js
 
-PostgreSQL - Primary database
-Prerequisites
-Node.js (v14 or higher)
+Express.js
 
-PostgreSQL database
+PostgreSQL
 
-npm or yarn package manager
+Additional Tools
 
-JWT - JSON Web Tokens for authentication
+JWT (authentication)
 
-CORS - Cross-origin resource sharing
+CORS
 
-dotenv - Environment variable management
+dotenv (environment variables)
+
 🚦 Getting Started
-Prerequisites
-Node.js (v14 or higher)
+✅ Prerequisites
 
-PostgreSQL database
+Ensure you have:
 
-npm or yarn package manager
+Node.js (v14+)
 
-Installation
-1.Install backend dependencies
+PostgreSQL
 
-bash
+npm or yarn
+
+📌 Installation
+1️⃣ Install backend dependencies
 cd server
 npm install
 
-2.Install frontend dependencies
-
-bash
+2️⃣ Install frontend dependencies
 cd ../client
 npm install
 
-3.Environment Configuration
+3️⃣ Configure Environment Variables
 
-Copy .env.example to .env in both server and client directories
+Copy .env.example → .env in both server and client
 
-Configure database connection strings
+Set:
 
-Set JWT secret keys
+Database credentials
 
-Configure other environment-specific variables
+JWT secrets
 
-4.Database Setup
+Email config (if required)
+
+4️⃣ Database Setup
 
 Create PostgreSQL database
 
-Run database migrations (if applicable)
+Run migrations (if applicable)
 
-Seed initial data (if needed)
+Seed initial data (optional)
 
-Running the Application
-Development Mode:
+▶️ Running the Application
+Development Mode
 
-bash
-# Start backend server (from server directory)
+Start backend (server folder):
+
 node index.js
 
-# Start frontend development server (from client directory)
+
+Start frontend (client folder):
+
 npm run dev
 
 🔐 Authentication & Authorization
 User Roles
-Admin: Full system access and administrative privileges
-
-OrgManager: Organization management capabilities
-
-DataCapturer: Data entry and management permissions
-
-Viewer: Read-only access to PIP data
-
+Role	Permissions
+Admin	Full system access
+OrgManager	Organisation-level management
+DataCapturer	Data entry and modification
+Viewer	Read-only access
 Protected Routes
-/Pips/pips - PIP management (authenticated users)
 
-/audit - Audit trail (authenticated users)
+/pips/pips — PIP management (authenticated)
 
-/DataCapturer/datacapturer - Data capturing (Admin only)
+/audit — audit trail access
 
-/administrator/* - Administrative functions (role-based access)
+/DataCapturer/datacapturer — Admin only
+
+/administrator/* — role-restricted
 
 🌐 API Endpoints
 Authentication
-POST /api/auth/login/init - Initiate login process
-
-POST /api/auth/login/verify - Verify MFA code
-
-POST /api/auth/logout - User logout
-
-Data Management
-GET /api/pipsdata - Retrieve PIPs data
-
-POST /api/pipsdata - Create new PIP entry
-
-PUT /api/pipsdata/:id - Update PIP entry
-
-DELETE /api/pipsdata/:id - Delete PIP entry
-
+Method	Endpoint	Description
+POST	/api/auth/login/init	Start login process
+POST	/api/auth/login/verify	Verify MFA code
+POST	/api/auth/logout	Logout user
+PIP Data
+Method	Endpoint
+GET	/api/pipsdata
+POST	/api/pipsdata
+PUT	/api/pipsdata/:id
+DELETE	/api/pipsdata/:id
 Administrative
-GET /api/users - User management
 
-GET /api/organisations - Organization management
+/api/users
 
-GET /api/packages - Package management
+/api/organisations
 
-GET /api/audittrails - Audit trail data
+/api/packages
+
+/api/audittrails
 
 System
-GET /api/health - Health check endpoint
 
-GET /api/endpoints - List all registered API endpoints
+/api/health — system status
+
+/api/endpoints — registered endpoint list
 
 🔧 Configuration
-Environment Variables
-Server (.env):
-
-env
+Server .env Example
 PORT=5000
 NODE_ENV=development
 
-# Local PostgreSQL for development
-DATABASE_URL=postgresql://postgres:K0ndj@B0y@localhost:5432/pips
+DATABASE_URL=postgresql://postgres:password@localhost:5432/pips
 JWT_SECRET=myUltraSecretKey123!@#
 
-# Individual DB variables for local development
 DB_USER=postgres
 DB_HOST=localhost
 DB_NAME=pips
-DB_PASSWORD=K0ndj@B0y
+DB_PASSWORD=password
 DB_PORT=5432
 
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=465
 EMAIL_SECURE=true
 EMAIL_USER=pipintel0@gmail.com
-EMAIL_PASSWORD='xxna qwbx wnfn hkpt'
+EMAIL_PASSWORD=xxxx
 EMAIL_FROM=noreply@pipintel.com
-EMAIL_DEBUG = true
+EMAIL_DEBUG=true
 
-Configure API base URL
+📊 Database Schema (Key Tables)
 
-Set authentication timeout values
+users – system accounts and profiles
 
-Configure feature flags
+organisations – institution data
 
-📊 Database Schema
-Key tables include:
+pips – project records
 
-users - User accounts and profiles
+audit_trails – change tracking
 
-organisations - Organizational data
+permissions – RBAC rules
 
-pips - Public Investment Projects data
-
-audit_trails - System activity logs
-
-permissions - Role-based access controls
-
-packages - System feature packages
+packages – feature management
 
 🛡 Security Features
-JWT token-based authentication
 
-Password hashing with bcrypt
+JWT authentication
 
-CORS configuration
+Password hashing (bcrypt)
 
-Input validation and sanitization
+CORS policy enforcement
+
+Input validation & sanitization
 
 SQL injection prevention
 
-XSS protection
+XSS and CSRF protection
 
-CSRF protection measures
+🌍 Browser Support
 
-📱 Browser Support
 Chrome (latest)
 
 Firefox (latest)
@@ -233,12 +222,13 @@ Safari (latest)
 Edge (latest)
 
 🆘 Support
-For technical support or questions:
+
+For technical assistance:
 
 Contact system administrators
 
 Refer to internal documentation
 
-Check audit logs for system issues
+Review audit logs for issues
 
-© 2024 All Rights Reserved | PIP Intel Namibia
+© 2024 PIP Intel Namibia — All Rights Reserve

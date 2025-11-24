@@ -1,92 +1,104 @@
-PIP Intel Namibia
+# **PIP Intel Namibia**
 
-A comprehensive web application for managing Public Investment Projects (PIPs) in Namibia — providing secure data management, user administration, organisational control, and complete audit tracking.
+A comprehensive web application for managing **Public Investment Projects (PIPs)** in Namibia — providing secure data management, user administration, organisational control, and full audit tracking.
 
-🚀 Features
-✅ Core Functionality
+---
 
-PIP Management – Full lifecycle management of Public Investment Projects
+## 🚀 Features
 
-Data Capturing – Specialized interface for structured data entry
+<details>
+<summary><strong>Core Functionality</strong></summary>
 
-Audit Trail – Complete tracking of activities and system changes
+- **PIP Management** – Full lifecycle management of Public Investment Projects  
+- **Data Capturing** – Structured data entry and management  
+- **Audit Trail** – Complete tracking of activities and system changes  
+- **User Management** – Role-based access and account control  
+- **Organisation Management** – Manage institutional structures and relationships  
 
-User Management – Role-based access and account control
+</details>
 
-Organisation Management – Manage institutional structures and relationships
+<details>
+<summary><strong>Security & Authentication</strong></summary>
 
-🔐 Security & Authentication
+- JWT-based authentication  
+- Multi-Factor Authentication (MFA / 2FA)  
+- Role-Based Access Control (RBAC)  
+- Secure session management with expiration controls  
 
-JWT-based authentication
+</details>
 
-Multi-Factor Authentication (MFA / 2FA)
+<details>
+<summary><strong>Administrative Features</strong></summary>
 
-Role-Based Access Control (RBAC)
+- User account creation and management  
+- Role and permission assignment  
+- System package and feature management  
+- PIP search history tracking  
 
-Secure session management with expiration controls
+</details>
 
-🛠 Administrative Features
+---
 
-User account creation and management
+## 🧰 Technology Stack
 
-Role and permission assignment
+<details>
+<summary><strong>Frontend</strong></summary>
 
-System package and feature management
+- React 18 (hooks-based)  
+- React Router DOM  
+- Axios  
+- Context API  
+- CSS3 (responsive design)  
 
-PIP search history tracking
+</details>
 
-🧰 Technology Stack
-Frontend
+<details>
+<summary><strong>Backend</strong></summary>
 
-React 18 (hooks based)
+- Node.js  
+- Express.js  
+- PostgreSQL  
 
-React Router DOM
+</details>
 
-Axios
+<details>
+<summary><strong>Additional Tools</strong></summary>
 
-Context API
+- JWT (authentication)  
+- CORS  
+- dotenv (environment variables)  
 
-CSS3 (responsive design)
+</details>
 
-Backend
+---
 
-Node.js
+## 🚦 Getting Started
 
-Express.js
+<details>
+<summary><strong>Prerequisites</strong></summary>
 
-PostgreSQL
+- Node.js (v14 or higher)  
+- PostgreSQL  
+- npm or yarn  
 
-Additional Tools
+</details>
 
-JWT (authentication)
+<details>
+<summary><strong>Installation</strong></summary>
 
-CORS
-
-dotenv (environment variables)
-
-🚦 Getting Started
-✅ Prerequisites
-
-Ensure you have:
-
-Node.js (v14+)
-
-PostgreSQL
-
-npm or yarn
-
-📌 Installation
-1️⃣ Install backend dependencies
+#### 1️⃣ Install backend dependencies
+```bash
 cd server
-npm install
-
-2️⃣ Install frontend dependencies
+npm install 
+```
+### 2️⃣ Install Frontend Dependencies
+```bash
 cd ../client
 npm install
-
+```
 3️⃣ Configure Environment Variables
 
-Copy .env.example → .env in both server and client
+Copy .env.example → .env in both folders
 
 Set:
 
@@ -104,26 +116,22 @@ Run migrations (if applicable)
 
 Seed initial data (optional)
 
-▶️ Running the Application
-Development Mode
-
-Start backend (server folder):
-
+</details> <details> <summary><strong>Running the Application</strong></summary>
+Start backend (server folder)
 node index.js
 
-
-Start frontend (client folder):
-
+Start frontend (client folder)
 npm run dev
 
+</details>
 🔐 Authentication & Authorization
-User Roles
+<details> <summary><strong>User Roles</strong></summary>
 Role	Permissions
 Admin	Full system access
 OrgManager	Organisation-level management
 DataCapturer	Data entry and modification
 Viewer	Read-only access
-Protected Routes
+</details> <details> <summary><strong>Protected Routes</strong></summary>
 
 /pips/pips — PIP management (authenticated)
 
@@ -133,19 +141,24 @@ Protected Routes
 
 /administrator/* — role-restricted
 
+</details>
 🌐 API Endpoints
-Authentication
+<details> <summary><strong>Authentication</strong></summary>
 Method	Endpoint	Description
 POST	/api/auth/login/init	Start login process
 POST	/api/auth/login/verify	Verify MFA code
 POST	/api/auth/logout	Logout user
-PIP Data
-Method	Endpoint
-GET	/api/pipsdata
-POST	/api/pipsdata
-PUT	/api/pipsdata/:id
-DELETE	/api/pipsdata/:id
-Administrative
+</details> <details> <summary><strong>PIP Data</strong></summary>
+
+GET /api/pipsdata
+
+POST /api/pipsdata
+
+PUT /api/pipsdata/:id
+
+DELETE /api/pipsdata/:id
+
+</details> <details> <summary><strong>Administrative</strong></summary>
 
 /api/users
 
@@ -155,14 +168,15 @@ Administrative
 
 /api/audittrails
 
-System
+</details> <details> <summary><strong>System</strong></summary>
 
-/api/health — system status
+/api/health — health check
 
-/api/endpoints — registered endpoint list
+/api/endpoints — list all endpoints
 
+</details>
 🔧 Configuration
-Server .env Example
+<details> <summary><strong>Server .env Example</strong></summary>
 PORT=5000
 NODE_ENV=development
 
@@ -183,34 +197,39 @@ EMAIL_PASSWORD=xxxx
 EMAIL_FROM=noreply@pipintel.com
 EMAIL_DEBUG=true
 
-📊 Database Schema (Key Tables)
+</details>
+📊 Database Schema
+<details> <summary><strong>Key Tables</strong></summary>
 
-users – system accounts and profiles
+users
 
-organisations – institution data
+organisations
 
-pips – project records
+pips
 
-audit_trails – change tracking
+audit_trails
 
-permissions – RBAC rules
+permissions
 
-packages – feature management
+packages
 
+</details>
 🛡 Security Features
+<details> <summary><strong>Security Layers</strong></summary>
 
 JWT authentication
 
 Password hashing (bcrypt)
 
-CORS policy enforcement
+CORS enforcement
 
 Input validation & sanitization
 
 SQL injection prevention
 
-XSS and CSRF protection
+XSS & CSRF protection
 
+</details>
 🌍 Browser Support
 
 Chrome (latest)
@@ -231,4 +250,4 @@ Refer to internal documentation
 
 Review audit logs for issues
 
-© 2024 PIP Intel Namibia — All Rights Reserve
+© 2024 PIP Intel Namibia — All Rights Reserved

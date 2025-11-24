@@ -83,55 +83,54 @@ A comprehensive web application for managing **Public Investment Projects (PIPs)
 
 </details>
 
-<details>
-<summary><strong>Installation</strong></summary>
+## ✅ Installation Steps
 
-#### 1️⃣ Install backend dependencies
-```bash
-cd server
-npm install 
-```
-### 2️⃣ Install Frontend Dependencies
+### **2️⃣ Install Frontend Dependencies**
+To install client-side packages, run:
+
 ```bash
 cd ../client
 npm install
 ```
 3️⃣ Configure Environment Variables
 
-Copy .env.example → .env in both folders
+Copy .env.example → .env in both folders.
 
-Set:
+Set required values:
 
 Database credentials
 
-JWT secrets
+JWT secret keys
 
-Email config (if required)
+Email configuration (if required)
 
 4️⃣ Database Setup
 
-Create PostgreSQL database
+Perform the following:
 
-Run migrations (if applicable)
+Create a PostgreSQL database
+
+Run database migrations (if applicable)
 
 Seed initial data (optional)
 
-</details> <details> <summary><strong>Running the Application</strong></summary>
-Start backend (server folder)
+🚀 Running the Application
+```bash
+Start Backend (from /server)
 node index.js
-
-Start frontend (client folder)
+```
+```bash
+Start Frontend (from /client)
 npm run dev
-
-</details>
+```
 🔐 Authentication & Authorization
-<details> <summary><strong>User Roles</strong></summary>
+User Roles
 Role	Permissions
 Admin	Full system access
 OrgManager	Organisation-level management
 DataCapturer	Data entry and modification
 Viewer	Read-only access
-</details> <details> <summary><strong>Protected Routes</strong></summary>
+Protected Routes
 
 /pips/pips — PIP management (authenticated)
 
@@ -139,16 +138,15 @@ Viewer	Read-only access
 
 /DataCapturer/datacapturer — Admin only
 
-/administrator/* — role-restricted
+/administrator/* — restricted to specific roles
 
-</details>
 🌐 API Endpoints
-<details> <summary><strong>Authentication</strong></summary>
+Authentication
 Method	Endpoint	Description
 POST	/api/auth/login/init	Start login process
 POST	/api/auth/login/verify	Verify MFA code
 POST	/api/auth/logout	Logout user
-</details> <details> <summary><strong>PIP Data</strong></summary>
+PIP Data
 
 GET /api/pipsdata
 
@@ -158,7 +156,7 @@ PUT /api/pipsdata/:id
 
 DELETE /api/pipsdata/:id
 
-</details> <details> <summary><strong>Administrative</strong></summary>
+Administrative
 
 /api/users
 
@@ -168,15 +166,14 @@ DELETE /api/pipsdata/:id
 
 /api/audittrails
 
-</details> <details> <summary><strong>System</strong></summary>
+System
 
-/api/health — health check
+/api/health — Health check
 
-/api/endpoints — list all endpoints
+/api/endpoints — List all registered endpoints
 
-</details>
-🔧 Configuration
-<details> <summary><strong>Server .env Example</strong></summary>
+🔧 Server Configuration Example
+```env
 PORT=5000
 NODE_ENV=development
 
@@ -196,10 +193,10 @@ EMAIL_USER=pipintel0@gmail.com
 EMAIL_PASSWORD=xxxx
 EMAIL_FROM=noreply@pipintel.com
 EMAIL_DEBUG=true
-
-</details>
+```
 📊 Database Schema
-<details> <summary><strong>Key Tables</strong></summary>
+
+Key tables include:
 
 users
 
@@ -213,9 +210,7 @@ permissions
 
 packages
 
-</details>
-🛡 Security Features
-<details> <summary><strong>Security Layers</strong></summary>
+🛡 Security Layers
 
 JWT authentication
 
@@ -229,7 +224,6 @@ SQL injection prevention
 
 XSS & CSRF protection
 
-</details>
 🌍 Browser Support
 
 Chrome (latest)

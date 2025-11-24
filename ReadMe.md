@@ -102,11 +102,28 @@ PIP-Intel-Namibia/
 4. **Environment Configuration**
    Create `server/.env` file with the following variables:
    ```env
+    PORT=5000
    NODE_ENV=development
-   PORT=5000
-   DATABASE_URL=postgresql://user:password@localhost:5432/pip_intel
-   JWT_SECRET=your-jwt-secret-here
-   ```
+
+   # Local PostgreSQL for development
+   DATABASE_URL=postgresql://postgres:K0ndj@B0y@localhost:5432/pips
+   JWT_SECRET=myUltraSecretKey123!@#
+
+   # Individual DB variables for local development
+   DB_USER=postgres
+   DB_HOST=localhost
+   DB_NAME=pips
+   DB_PASSWORD=K0ndj@B0y
+   DB_PORT=5432
+
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_PORT=465
+   EMAIL_SECURE=true
+   EMAIL_USER=pipintel0@gmail.com
+   EMAIL_PASSWORD='xxna qwbx wnfn hkpt'
+   EMAIL_FROM=noreply@pipintel.com
+   EMAIL_DEBUG = true
+    ```
 
 5. **Database Setup**
    - Create PostgreSQL database named `pip_intel`
@@ -118,7 +135,7 @@ PIP-Intel-Namibia/
 1. **Start the backend API**
    ```bash
    cd server
-   npm run dev
+   node index.js
    ```
    - API runs on `http://localhost:5000`
    - Health check available at `/api/health`
@@ -126,7 +143,7 @@ PIP-Intel-Namibia/
 2. **Start the frontend application**
    ```bash
    cd client
-   npm start
+   npm run dev
    ```
    - React app runs on `http://localhost:3000`
    - Proxies API calls to backend
@@ -262,3 +279,4 @@ For technical support:
 ---
 
 **© 2024 All Rights Reserved | PIP Intel Namibia**
+

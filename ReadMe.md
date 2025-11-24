@@ -29,7 +29,7 @@ A comprehensive web application for managing Public Investment Projects (PIPs) i
 | --- | --- | --- |
 | Client (React 18 + CRA) | Auth flow (password + 2FA), dashboards, PIP management, data capturing, audit trails, user administration | `client/src` (pages, components, context, utils) |
 | Server (Express + Node) | REST API for users, roles, permissions, organisations, PIPs data, audit trails, packages, authentication | `server/index.js`, `server/routes`, `server/middleware` |
-| Database (PostgreSQL) | User accounts, organisations, PIPs data, audit trails, permissions, packages | `database/` schemas and migrations |
+| Database (PostgreSQL) | User accounts, organisations, PIPs data, audit trails, permissions, packages | `database/` schemas and configurations |
 | DevOps | Deployment configurations, environment management, static file serving | `Procfile`, environment configurations |
 
 ## Tech Stack
@@ -67,7 +67,6 @@ PIP-Intel-Namibia/
 │   ├── middleware/          # Authentication, authorization, error handling
 │   ├── config/              # Database configuration
 │   └── temp/, public/       # File storage and static serving
-├── database/                # Database schemas and configurations
 └── README.md
 ```
 
@@ -102,7 +101,7 @@ PIP-Intel-Namibia/
 4. **Environment Configuration**
    Create `server/.env` file with the following variables:
    ```env
-    PORT=5000
+   PORT=5000
    NODE_ENV=development
 
    # Local PostgreSQL for development
@@ -123,12 +122,43 @@ PIP-Intel-Namibia/
    EMAIL_PASSWORD='xxna qwbx wnfn hkpt'
    EMAIL_FROM=noreply@pipintel.com
    EMAIL_DEBUG = true
-    ```
+   ```
 
-5. **Database Setup**
-   - Create PostgreSQL database named `pip_intel`
-   - Run database schema setup scripts
-   - Seed initial data if needed
+## Database Setup
+
+### Development Environment
+The application automatically uses local PostgreSQL database with the following default configuration:
+
+| Setting | Value |
+| --- | --- |
+| Database Name | `pips` |
+| Host | `localhost` |
+| Port | `5432` |
+| User | `postgres` |
+| Password | `K0ndj@B0y` |
+
+**Setup Steps:**
+1. **Install PostgreSQL** on your local machine
+2. **Create the database:**
+   ```bash
+   createdb pips
+   ```
+3. **Verify connection** - The application will automatically test the connection on startup
+4. **Run database schema scripts** to create required tables and initial data
+
+### Production Environment (Railway)
+In production, the application automatically connects to Railway's PostgreSQL service using the internal connection string:
+- **Database:** `pips`
+- **Host:** `postgres.railway.internal`
+- **Port:** `5432`
+- **SSL:** Enabled with `rejectUnauthorized: false`
+
+**No manual database setup required** - Railway automatically provisions and configures the production database.
+
+### Database Connection Test
+The application includes automatic database connection testing on startup:
+- ✅ Success message: "Successfully connected to PostgreSQL database"
+- ❌ Error message: "Error connecting to PostgreSQL database" with detailed error information
 
 ## Running The App Locally
 
@@ -139,6 +169,7 @@ PIP-Intel-Namibia/
    ```
    - API runs on `http://localhost:5000`
    - Health check available at `/api/health`
+   - Database connection status displayed in console
 
 2. **Start the frontend application**
    ```bash
@@ -152,14 +183,6 @@ PIP-Intel-Namibia/
    - Open `http://localhost:3000` in your browser
    - Use provided credentials to login
 
-## Database Toolkit
-
-| Asset | Purpose |
-| --- | --- |
-| Database schemas | Core tables for users, organisations, PIPs data, audit trails, permissions |
-| Migration scripts | Database structure updates and version control |
-| Seed data | Initial roles, permissions, and administrative users |
-
 ## Configuration Reference
 
 ### Server Environment Variables
@@ -168,8 +191,12 @@ PIP-Intel-Namibia/
 | --- | --- | --- | --- |
 | `NODE_ENV` | No | `development` | Runtime environment (development/production) |
 | `PORT` | No | `5000` | Express server port |
-| `DATABASE_URL` | Yes | - | PostgreSQL connection string |
 | `JWT_SECRET` | **Yes** | - | Secret for JWT token signing |
+| `DB_USER` | Dev | `postgres` | PostgreSQL username |
+| `DB_HOST` | Dev | `localhost` | PostgreSQL host |
+| `DB_NAME` | Dev | `pips` | Database name |
+| `DB_PASSWORD` | Dev | `K0ndj@B0y` | Database password |
+| `DB_PORT` | Dev | `5432` | Database port |
 | `RAILWAY_ENVIRONMENT` | Auto | - | Railway deployment detection |
 
 ### Client Environment Variables
@@ -184,28 +211,30 @@ PIP-Intel-Namibia/
 
 | Command | Description |
 | --- | --- |
-| `npm start` | Start production server |
-| `npm run dev` | Start development server with hot reload |
+| `node index.js` | Start production server |
+
 
 ### Client (`client/package.json`)
 
 | Command | Description |
 | --- | --- |
-| `npm start` | Start development server |
-| `npm run build` | Create production build |
+| `npm run dev` | Start development server |
+
 
 ## Deployment Notes
 
 - **Production Build:** Client builds are served from `client/build` directory in production
 - **Static File Serving:** Express serves static files from `public` and `temp` directories
 - **Environment Detection:** Automatically detects Railway environment for production configuration
-- **CORS Configuration:** Configured for cross-origin requests with environment-specific settings
+- **Database Configuration:** Production database automatically configured for Railway deployment
+- **SSL Configuration:** Production database connections use SSL with proper certificate handling
 
 ## Testing & Quality
 
 - **Frontend:** React component testing available via CRA test utilities
 - **Backend:** API endpoint testing recommended with tools like Jest and Supertest
 - **Health Checks:** `/api/health` endpoint for system status monitoring
+- **Database Connectivity:** Automatic connection testing on application startup
 
 ## Authentication & Authorization
 
@@ -246,11 +275,12 @@ PIP-Intel-Namibia/
 
 | Symptom | Fix |
 | --- | --- |
-| Database connection errors | Verify `DATABASE_URL` in environment variables and ensure PostgreSQL is running |
+| Database connection errors | Verify PostgreSQL is running and credentials in environment variables |
+| "Error connecting to PostgreSQL" | Check if database `pips` exists and user has proper permissions |
 | Authentication failures | Check JWT secret configuration and token expiration settings |
 | CORS errors | Verify frontend URL is included in CORS configuration |
 | Static file serving issues | Check file permissions and directory paths for `public` and `temp` folders |
-| Build failures | Ensure Node.js version compatibility and all dependencies are installed |
+| Production database issues | Verify Railway PostgreSQL service is running and accessible |
 
 ## Security Features
 
@@ -260,6 +290,7 @@ PIP-Intel-Namibia/
 - Input validation and sanitization
 - CORS configuration for cross-origin protection
 - Secure password handling
+- SSL database connections in production
 
 ## Browser Support
 
@@ -273,8 +304,9 @@ PIP-Intel-Namibia/
 For technical support:
 - Contact system administrators
 - Check server logs for error details
-- Verify database connectivity
+- Verify database connectivity using health endpoints
 - Review audit trails for system activity
+- Monitor database connection status in application logs
 
 ---
 
